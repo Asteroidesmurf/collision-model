@@ -55,10 +55,6 @@ export default class Particle {
         this.y += this.velocity.y * this.resistance;
         this.x += this.velocity.x * this.resistance;
 
-        this.impactArray.forEach(impact => {
-            impact.update(this.impactArray);
-        });
-
         this.draw();
     }
 

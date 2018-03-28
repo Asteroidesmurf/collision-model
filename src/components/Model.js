@@ -25,24 +25,18 @@ export default class Model {
 	particles = []
 	
 	constructor (ctx, canvasWidth, canvasHeight) {
-		// this.form = document.getElementById("settings")
-		// this.friction = this.form.elements[0].value / 100
-		// this.speed = this.form.elements[1].value
-		// this.minSize = this.form.elements[2].value
-		// this.maxSize = this.form.elements[3].value
-		// this.resistance = this.form.elements[4].value
-		// this.particleCount = this.form.elements[5].value
+		this.form = document.getElementById("settings")
+		this.friction = this.form.elements[0].value / 100
+		this.speed = this.form.elements[1].value
+		this.minSize = this.form.elements[2].value
+		this.maxSize = this.form.elements[3].value
+		this.resistance = this.form.elements[4].value
+		this.particleCount = this.form.elements[5].value
 		this.canvas = {
 			ctx: ctx,
 			width: canvasWidth,
 			height: canvasHeight
 		}
-		this.friction = 0.9
-		this.speed = 3
-		this.minSize = 1
-		this.maxSize = 6
-		this.resistance = .99
-		this.particleCount = 100
 	}
 
 	init() {
@@ -51,7 +45,7 @@ export default class Model {
       const x = numberBetween(0 + radius , this.canvas.width - radius)
       const y = numberBetween(0 + radius , this.canvas.height - radius)
       const color = randomArrayItem(this.colors)
-      const mass = Math.pow(2*Math.PI * radius, 2)
+      const mass = Math.pow(2*Math.PI * radius, 3)
       const velocity = {
         x: numberBetween(-this.speed, this.speed),
         y: numberBetween(-this.speed, this.speed)
@@ -67,7 +61,7 @@ export default class Model {
           }
         }
       }
-
+      // Create a particle
       this.particles.push(new Particle(
       	this.canvas.ctx, 
       	this.canvas.width, 
@@ -88,14 +82,21 @@ export default class Model {
   updateCanvasWidth (width, height) {
     this.canvas.width = width
     this.canvas.height = height
+
   }
 
 	// Animation Loop
 	animate() {
 	  this.canvas.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
-	  this.particles.forEach(Particle => {
-	    Particle.update(this.particles)
+	  this.particles.forEach(particle => {
+	  	particle.impactArray.forEach(impact => {
+	  		impact.update(particle.impactArray)
+	  	})
+	  })
+
+	  this.particles.forEach(particle => {
+	    particle.update(this.particles)
 	  })
 
 	  requestAnimationFrame(this.animate.bind(this))
