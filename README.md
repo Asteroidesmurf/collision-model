@@ -1,5 +1,5 @@
-# collision-model
-physics based particle collision model
+# Particle Collision Model
+Physics based particle collision model.
 
 ## Installation
 First install dependencies:
