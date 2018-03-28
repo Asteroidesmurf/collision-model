@@ -13,9 +13,9 @@ export default class Impact {
         this.opacity = 0.4
     }
     
-    update () {
+    update (impactArray) {
         impactArray = impactArray.filter(impact => impact.opacity != 0)
-        
+
         if (this.opacity > 0) {
             this.opacity -= .005
             this.opacity = Math.max(0, this.opacity)
@@ -24,13 +24,13 @@ export default class Impact {
     }
 
     draw () {
-        c.beginPath()
-        c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
-        c.save()
-        c.globalAlpha = this.opacity
-        c.fillStyle = 'red'
-        c.fill()
-        c.restore()
-        c.closePath()
+        this.ctx.beginPath()
+        this.ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
+        this.ctx.save()
+        this.ctx.globalAlpha = this.opacity
+        this.ctx.fillStyle = 'red'
+        this.ctx.fill()
+        this.ctx.restore()
+        this.ctx.closePath()
     }
 }
