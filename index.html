@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Particle Model</title>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+		}
+		canvas {
+			background: black;
+		}
+		#header {
+			height: 60px;
+		}
+		input {
+			width: 80px;
+		}
+		.submit {
+			width: 100px;
+		}
+		.checkbox {
+			width: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div id="header">
+		<form id="settings">
+			Friction: <input type="range" name="friction" min="0" max="100" value="90">
+			Speed: <input type="range" name="speed" min="0" max="20" value="4">
+			Min size: <input type="range" name="minimum size" min="1" max="50" value="2">
+			Max size: <input type="range" name="maximum size" min="2" max="51" value="10">
+			Resistance: <input type="number" name="resistance" min="0" max="1" value="0.999">
+			Particles: <input type="number" name="particle Count" min="1" max="1500" value="200">
+			Impacts: <input type="checkbox" class="checkbox" name="ImpactOn" checked>
+			<input class="submit" type="button" name="Submit" onclick="return submitForm()" value="Run Sim">
+		</form>
+		</div>
+	<canvas></canvas>
+	<script src="canvas.js"></script>
+</body>
+</html>
