@@ -2,7 +2,7 @@
 Physics based particle collision model.
 
 ## Installation
-First install dependencies:
+First install the dependencies:
 ```
 npm install
 ```
